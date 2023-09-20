@@ -1,2 +1,3 @@
-# foxit-word-to-pdf
-Repository containing sample code demonstrating how you can convert a Word document to PDF in a Node.js and Express REST API.
+# Word to PDF Converter using Foxit PDF SDK
+
+This repository contains sample code demonstrating how you can convert Word to PDF files using Node.js.

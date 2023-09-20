@@ -1,4 +1,4 @@
-const { exec, execSync } = require('child_process');
+const { exec } = require('child_process');
 const express = require('express');
 const multer = require('multer');
 const path = require('path');

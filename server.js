@@ -45,10 +45,10 @@ app.post('/', upload.single('docxFile'), (req, res) => {
   
   // Execute the C++ application, passing in the DOCX filename as the first parameter and the
   // PDF filename as the second.
-  exec(`/app/sdk/convert "${docxPath}" "${pdfPath}"`, { timeout: 30000 }, (error, stdout, stderr) => {
+  exec(`/app/sdk/convert "${docxPath}" "${pdfPath}"`, { timeout: 15000 }, (error, stdout, stderr) => {
     // Process any errors and return an error response to the user.
     if (error) {
-      res.sendStatus(500).send("An unexpected error occurred. Please try again.");
+      res.status(500).send("An unexpected error occurred. Please try again.");
       return;
     }
 

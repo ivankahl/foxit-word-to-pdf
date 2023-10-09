@@ -11,7 +11,7 @@ const { randomUUID } = require('crypto');
 const upload = multer({
   storage: multer.diskStorage({
     destination: (req, file, callback) => {
-      // Generate new folder and ensure it exists.
+      // Generate a new folder and ensure it exists.
       const folder = path.join(__dirname, 'files', randomUUID());
       fs.mkdirSync(folder, { recursive: true });
 
@@ -43,9 +43,9 @@ app.post('/', upload.single('docxFile'), (req, res) => {
     fs.rmSync(req.file.destination, { recursive: true });
   })
   
-  // Execute the C++ application, passing in the DOCX filename as the first parameter and the
-  // PDF filename as the second.
-  exec(`/app/sdk/convert "${docxPath}" "${pdfPath}"`, { timeout: 15000 }, (error, stdout, stderr) => {
+  // Execute the C++ application, passing in the DOCX file name as the first parameter and the
+  // PDF file name as the second.
+  exec(`/app/sdk/convert "${docxPath}" "${pdfPath}"`, { timeout: 30000 }, (error, stdout, stderr) => {
     // Process any errors and return an error response to the user.
     if (error) {
       res.status(500).send("An unexpected error occurred. Please try again.");

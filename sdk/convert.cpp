@@ -16,9 +16,8 @@ using namespace foxit::addon::conversion;
 
 int main(int argc, char *argv[])
 {
-    // The value of "sn" can be got from "gsdk_sn.txt" (the string after "SN=").
+    // Retrieve Foxit license details from environment variables
     const char *sn = std::getenv("FOXIT_SN");
-    // The value of "key" can be got from "gsdk_key.txt" (the string after "Sign=").
     const char *key = std::getenv("FOXIT_KEY");
 
     // Initialize the library before using it
@@ -43,6 +42,6 @@ int main(int argc, char *argv[])
     // Release the library when finished
     Library::Release();
 
-    // Exit with 0 to signify everything executed successfully.
+    // Exit with 0 to signify everything executed successfully
     exit(0);
 }

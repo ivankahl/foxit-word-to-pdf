@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y make g++
 # Create a working directory
 WORKDIR /src
 
-# Copy the C++ files, libraries and headers to the
+# Copy the C++ files, libraries, and headers to the
 # build container to build the application
 COPY ./sdk/Makefile ./sdk/convert.cpp ./
 COPY ./sdk/lib ./lib
@@ -38,7 +38,7 @@ WORKDIR /libreoffice
 # Download the older version of LibreOffice using curl
 RUN curl -O https://downloadarchive.documentfoundation.org/libreoffice/old/6.4.7.2/deb/x86_64/LibreOffice_6.4.7.2_Linux_x86-64_deb.tar.gz
 # Extract the downloaded files so the *.deb files can
-# be copied to the release container.
+# be copied to the release container
 RUN tar -xf LibreOffice_6.4.7.2_Linux_x86-64_deb.tar.gz 
 
 #####################################################
@@ -46,7 +46,7 @@ RUN tar -xf LibreOffice_6.4.7.2_Linux_x86-64_deb.tar.gz
 #
 # This stage will build the final Docker image that
 # gets deployed. It's based on the Node.js image since
-# your REST API is developed in Express and Node.js
+# your REST API is developed in Express and Node.js.
 #####################################################
 FROM node:18-bookworm as release
 
@@ -60,7 +60,7 @@ COPY --from=download-libreoffice6 /libreoffice/LibreOffice_6.4.7.2_Linux_x86-64_
 RUN dpkg -i *.deb
 RUN rm -rf /temp
 
-# Updated your LD_LIBRARY_PATH with the location of the Foxit
+# Update your LD_LIBRARY_PATH with the location of the Foxit
 # PDF SDK library files so your C++ program can find them
 ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/app/sdk/lib"
 
